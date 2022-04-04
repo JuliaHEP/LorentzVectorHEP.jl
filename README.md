@@ -1,6 +1,6 @@
 # LorentzVectorHEP
 
-Provides two types:
+Provides two types (and the conversion between the two):
 - `LorentzVector` (energy, px, py, pz)
 - `LorentzVectorCyl` (pt, eta, phi, mass)
 

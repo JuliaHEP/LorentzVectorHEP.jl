@@ -1,7 +1,7 @@
 # LorentzVectorHEP
 
 Provides two types (and the conversion between the two):
-- `LorentzVector` (energy, px, py, pz)
+- `LorentzVector` (energy, px, py, pz) (from [LorentzVectors.jl](https://github.com/JLTastet/LorentzVectors.jl))
 - `LorentzVectorCyl` (pt, eta, phi, mass)
 
 and these functions for both of them:

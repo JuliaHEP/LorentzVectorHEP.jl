@@ -14,3 +14,8 @@ as well as these utility functions:
 ```julia
 deltar, deltaeta, mt, mt2
 ```
+
+
+## LHC coordinate system
+
+![](https://cds.cern.ch/record/1699952/files/Figures_T_Coordinate.png)

@@ -5,7 +5,7 @@ using LorentzVectors # provides x, y, z, t
 export LorentzVectorCyl, LorentzVector
 
 export px, py, pz, energy, fast_mass, pt, eta, phi, mass
-export deltaphi, deltar
+export deltaphi, deltar, deltaeta
 export ΔR, Δϕ, Δη
 
 include("cartesian.jl")

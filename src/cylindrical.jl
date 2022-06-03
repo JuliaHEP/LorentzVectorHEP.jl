@@ -94,3 +94,11 @@ const Δη = deltaeta
 end
 deltar(v1::LorentzVectorCyl, v2::LorentzVectorCyl) = sqrt(deltar2(v1, v2))
 const ΔR = deltar
+
+
+function fromPtEtaPhiE(pt, eta, phi, E) 
+    m2 = E^2 - pt^2 - (sinh(eta) * pt)^2
+    m = sign(m2) * sqrt(abs(m2)) 
+    return LorentzVectorCyl(pt, eta, phi, m) 
+end
+  

@@ -80,12 +80,10 @@ end
     dphi = dphi - 2*pi*(dphi > pi) + 2*pi*(dphi <= -pi)
     return dphi
 end
-const Δϕ = deltaphi
 
 @inline function deltaeta(v1::LorentzVectorCyl, v2::LorentzVectorCyl)
     return v2.eta - v1.eta
 end
-const Δη = deltaeta
 
 @inline function deltar2(v1::LorentzVectorCyl, v2::LorentzVectorCyl)
     dphi = deltaphi(v1,v2)
@@ -93,4 +91,3 @@ const Δη = deltaeta
     return fma(dphi, dphi, deta^2)
 end
 deltar(v1::LorentzVectorCyl, v2::LorentzVectorCyl) = sqrt(deltar2(v1, v2))
-const ΔR = deltar

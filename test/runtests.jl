@@ -57,3 +57,9 @@ end
         func(v1) ≈ func(LorentzVector(v1))
     end
 end
+
+@testset "fromPtEtaPhiE" begin
+    v1 = LorentzVectorCyl(1761.65,-2.30322,-2.5127,0.105652) 
+    v2 = fromPtEtaPhiE(v1.pt, v1.eta, v1.phi, energy(v1))
+    @test v1.mass ≈ v2.mass atol=1e-6
+ end

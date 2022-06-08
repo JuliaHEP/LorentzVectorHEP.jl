@@ -7,6 +7,7 @@ export LorentzVectorCyl, LorentzVector
 export px, py, pz, energy, fast_mass, pt, eta, phi, mass
 export deltaphi, deltar, deltaeta
 export ΔR, Δϕ, Δη
+export fromPtEtaPhiE
 
 include("cartesian.jl")
 include("cylindrical.jl")

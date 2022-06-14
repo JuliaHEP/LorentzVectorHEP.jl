@@ -48,7 +48,7 @@ function Base.:+(v1::LorentzVectorCyl{T}, v2::LorentzVectorCyl{W}) where {T,W}
     pt = sqrt(ptsq)
     eta = asinh(sumpz/pt)
     phi = atan(sumpy, sumpx)
-    mass = sqrt(max(fma(m1, m1, m2^2) + 2*e1*e2 - 2*(fma(px1, px2, py1*py2) + pz1*pz2), zero(v1.pt)))
+    mass = sqrt(max(muladd(m1, m1, m2^2) + 2*e1*e2 - 2*(muladd(px1, px2, py1*py2) + pz1*pz2), zero(v1.pt)))
     return LorentzVectorCyl(pt,eta,phi,mass)
 end
 
@@ -90,7 +90,7 @@ const Δη = deltaeta
 @inline function deltar2(v1::LorentzVectorCyl, v2::LorentzVectorCyl)
     dphi = deltaphi(v1,v2)
     deta = deltaeta(v1,v2)
-    return fma(dphi, dphi, deta^2)
+    return muladd(dphi, dphi, deta^2)
 end
 deltar(v1::LorentzVectorCyl, v2::LorentzVectorCyl) = sqrt(deltar2(v1, v2))
 const ΔR = deltar

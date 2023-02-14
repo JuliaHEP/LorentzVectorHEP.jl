@@ -46,7 +46,7 @@ deltaphi(lv1, lv2) = phi_mpi_pi(phi(lv1) - phi(lv2))
 
 function deltar(lv1, lv2)
     deta = eta(lv1) - eta(lv2)
-    dphi = deltaphi(lv1 - lv2)
+    dphi = deltaphi(lv1, lv2)
     return sqrt(fma(deta, deta, dphi * dphi))
 end
 

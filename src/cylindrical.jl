@@ -1,9 +1,10 @@
-struct LorentzVectorCyl{T <: AbstractFloat}
+struct LorentzVectorCyl{T <: Number}
     pt::T
     eta::T
     phi::T
     mass::T
 end
+LorentzVectorCyl(pt, eta, phi, mass) = LorentzVectorCyl(promote(pt, eta, phi, mass)...)
 
 Base.show(io::IO, v::LorentzVectorCyl) = print(io, "$(typeof(v))(pt=$(v.pt), eta=$(v.eta), phi=$(v.phi), mass=$(v.mass))")
 

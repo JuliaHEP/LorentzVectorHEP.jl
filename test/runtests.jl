@@ -45,6 +45,9 @@ using Test
 
     vcart3 = LorentzVector(66.0, 0.0, 0.0, 66.0)
     @test rapidity(vcart3) ≈ 100066.0 atol=1e-9
+
+    vcart4 = LorentzVector(4.4, 8.1, 2.2, 3.3)
+    @test mass(vcart4) ≈ -7.872737770305829 atol=1e-9
 end
 
 @testset "summing" begin

@@ -1,7 +1,7 @@
 Base.zero(lv::T) where T<:LorentzVector = T(0,0,0,0)
 mass2(lv::LorentzVector) = dot(lv, lv)
 """mass value - returns a negative number for spacelike 4-vectors"""
-mass(lv::LorentzVector) = mass2(lv) < 0.0 ? sqrt(-mass2(lv)) : sqrt(mass2(lv))
+mass(lv::LorentzVector) = mass2(lv) < 0.0 ? -sqrt(-mass2(lv)) : sqrt(mass2(lv))
 pt2(lv::LorentzVector) = muladd(lv.x, lv.x, lv.y^2)
 pt(lv::LorentzVector) = sqrt(pt2(lv))
 mt2(lv::LorentzVector) = lv.t^2 - lv.z^2

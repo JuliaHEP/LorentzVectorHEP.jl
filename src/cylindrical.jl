@@ -77,7 +77,7 @@ function fast_mass(v1::LorentzVectorCyl, v2::LorentzVectorCyl)
 end
 
 "Rapidity"
-function rap(lv::LorentzVectorCyl)
+function rapidity(lv::LorentzVectorCyl)
     num = sqrt(lv.mass^2 + lv.pt^2 * cosh(lv.eta)^2) + lv.pt * sinh(lv.eta)
     den = sqrt(lv.mass^2 + lv.pt^2)
     return log(num/den)

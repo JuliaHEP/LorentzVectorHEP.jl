@@ -10,7 +10,7 @@ you can also use `fromPtEtaPhiE(pt, eta, phi, energy) --> LorentzVectorCyl`.
 and these functions for both of them:
 
 ```julia
-px, py, pz, energy, pt, rap, eta, phi, mass
+px, py, pz, energy, pt, rapidity, eta, phi, mass
 ```
 
 as well as these utility functions:

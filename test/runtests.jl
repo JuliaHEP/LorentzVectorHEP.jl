@@ -8,7 +8,7 @@ using Test
     @test px(v1) ≈ -1424.610065192358 atol=1e-6
     @test py(v1) ≈ -1036.2899616674022 atol=1e-6
     @test pz(v1) ≈ -8725.817601790963 atol=1e-6
-    @test rap(v1) ≈ -2.3032199982371715 atol=1e-6
+    @test rapidity(v1) ≈ -2.3032199982371715 atol=1e-6
 
     @test isapprox((v1+v2).mass, 8.25741602000877, atol=1e-6)
     @test isapprox(fast_mass(v1,v2), 8.25741602000877, atol=1e-6)

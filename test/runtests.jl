@@ -10,6 +10,9 @@ using Test
     @test pz(v1) ≈ -8725.817601790963 atol=1e-6
     @test rapidity(v1) ≈ -2.3032199982371715 atol=1e-6
 
+    @test LorentzVectorHEP.pt2(v1) ≈ 3.1034107225e6 atol=1e-6
+    @test LorentzVectorHEP.mass2(v1) ≈ 0.011162345103999998 atol=1e-6
+
     @test isapprox((v1+v2).mass, 8.25741602000877, atol=1e-6)
     @test isapprox(fast_mass(v1,v2), 8.25741602000877, atol=1e-6)
 
@@ -25,6 +28,23 @@ using Test
     @test v3.mass == 5*v1.mass
     @test v3.eta == v1.eta
     @test v3.phi == v1.phi
+
+    vcart1 = LorentzVector(10.0, -2.3, 4.5, 0.23)
+    @test rapidity(vcart1) ≈ 0.02300405695442185 atol=1e-9
+    @test eta(vcart1) ≈ 0.045495409709778126 atol=1e-9
+    @test phi(vcart1) ≈ 2.0432932623119604 atol=1e-9
+
+    vcart2 = LorentzVector(10.0, 2.7, -4.1, -0.21)
+    @test rapidity(vcart2) ≈ -0.021003087817077763 atol=1e-9
+    @test eta(vcart2) ≈ -0.04276400891568771 atol=1e-9
+    @test phi(vcart2) ≈ -0.9884433806509134 atol=1e-9
+    @test LorentzVectorHEP.phi02pi(vcart2) ≈ 5.294741926528673 atol=1e-9
+
+    @test deltaeta(vcart1, vcart2) ≈ 0.08825941862546584 atol=1e-9
+    @test deltaphi(vcart1, vcart2) ≈ 3.0317366429628736 atol=1e-9
+
+    vcart3 = LorentzVector(66.0, 0.0, 0.0, 66.0)
+    @test rapidity(vcart3) ≈ 100066.0 atol=1e-9
 end
 
 @testset "summing" begin

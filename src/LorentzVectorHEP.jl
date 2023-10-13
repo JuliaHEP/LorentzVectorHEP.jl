@@ -4,7 +4,7 @@ using LorentzVectors # provides x, y, z, t
 
 export LorentzVectorCyl, LorentzVector
 
-export px, py, pz, energy, fast_mass, pt, eta, phi, mass
+export px, py, pz, energy, fast_mass, pt, rap, eta, phi, mass
 export deltaphi, deltar, deltaeta
 export ΔR, Δϕ, Δη
 export fromPtEtaPhiE

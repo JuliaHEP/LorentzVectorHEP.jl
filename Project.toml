@@ -1,7 +1,7 @@
 name = "LorentzVectorHEP"
 uuid = "f612022c-142a-473f-8cfd-a09cf3793c6c"
 authors = ["Jerry Ling <proton@jling.dev> and contributors"]
-version = "0.1.5"
+version = "0.1.6"
 
 [deps]
 LorentzVectors = "3f54b04b-17fc-5cd4-9758-90c048d965e3"

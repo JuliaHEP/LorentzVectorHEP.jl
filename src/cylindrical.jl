@@ -20,9 +20,11 @@ Base.zero(::Type{LorentzVectorCyl}) = zero(LorentzVectorCyl{Float64})
 Base.zero(lv::T) where T<:LorentzVectorCyl = T(0,0,0,0)
 
 pt(lv::LorentzVectorCyl) = lv.pt
+pt2(lv::LorentzVectorCyl) = lv.pt^2
 eta(lv::LorentzVectorCyl) = lv.eta
 phi(lv::LorentzVectorCyl) = lv.phi
 mass(lv::LorentzVectorCyl) = lv.mass
+mass2(lv::LorentzVectorCyl) = lv.mass^2
 px(v::LorentzVectorCyl) = v.pt * cos(v.phi)
 py(v::LorentzVectorCyl) = v.pt * sin(v.phi)
 pz(v::LorentzVectorCyl) = v.pt * sinh(v.eta)
@@ -74,6 +76,12 @@ function fast_mass(v1::LorentzVectorCyl, v2::LorentzVectorCyl)
         - tpt12*cos(phi1-phi2), zero(pt1)))
 end
 
+"Rapidity"
+function rapidity(lv::LorentzVectorCyl)
+    num = sqrt(lv.mass^2 + lv.pt^2 * cosh(lv.eta)^2) + lv.pt * sinh(lv.eta)
+    den = sqrt(lv.mass^2 + lv.pt^2)
+    return log(num/den)
+end
 
 # https://root.cern.ch/doc/v606/GenVector_2VectorUtil_8h_source.html#l00061
 @inline function deltaphi(v1::LorentzVectorCyl, v2::LorentzVectorCyl)

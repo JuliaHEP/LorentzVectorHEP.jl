@@ -4,8 +4,11 @@ using LorentzVectors # provides x, y, z, t
 
 export LorentzVectorCyl, LorentzVector
 
-export px, py, pz, energy, fast_mass, pt, eta, phi, theta, mass
+
+export px, py, pz, energy, fast_mass, pt, rapidity, eta, phi, theta, mass
 export deltaphi, deltar, deltaeta, deltatheta
+export ΔR, Δϕ, Δη
+export fromPtEtaPhiE
 
 include("cartesian.jl")
 include("cylindrical.jl")

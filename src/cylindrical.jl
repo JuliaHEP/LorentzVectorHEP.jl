@@ -1,9 +1,10 @@
-struct LorentzVectorCyl{T <: AbstractFloat}
+struct LorentzVectorCyl{T <: Number}
     pt::T
     eta::T
     phi::T
     mass::T
 end
+LorentzVectorCyl(pt, eta, phi, mass) = LorentzVectorCyl(promote(pt, eta, phi, mass)...)
 
 Base.show(io::IO, v::LorentzVectorCyl) = print(io, "$(typeof(v))(pt=$(v.pt), eta=$(v.eta), phi=$(v.phi), mass=$(v.mass))")
 
@@ -19,9 +20,11 @@ Base.zero(::Type{LorentzVectorCyl}) = zero(LorentzVectorCyl{Float64})
 Base.zero(lv::T) where T<:LorentzVectorCyl = T(0,0,0,0)
 
 pt(lv::LorentzVectorCyl) = lv.pt
+pt2(lv::LorentzVectorCyl) = lv.pt^2
 eta(lv::LorentzVectorCyl) = lv.eta
 phi(lv::LorentzVectorCyl) = lv.phi
 mass(lv::LorentzVectorCyl) = lv.mass
+mass2(lv::LorentzVectorCyl) = lv.mass^2
 px(v::LorentzVectorCyl) = v.pt * cos(v.phi)
 py(v::LorentzVectorCyl) = v.pt * sin(v.phi)
 pz(v::LorentzVectorCyl) = v.pt * sinh(v.eta)
@@ -48,7 +51,7 @@ function Base.:+(v1::LorentzVectorCyl{T}, v2::LorentzVectorCyl{W}) where {T,W}
     pt = sqrt(ptsq)
     eta = asinh(sumpz/pt)
     phi = atan(sumpy, sumpx)
-    mass = sqrt(max(fma(m1, m1, m2^2) + 2*e1*e2 - 2*(fma(px1, px2, py1*py2) + pz1*pz2), zero(v1.pt)))
+    mass = sqrt(max(muladd(m1, m1, m2^2) + 2*e1*e2 - 2*(muladd(px1, px2, py1*py2) + pz1*pz2), zero(v1.pt)))
     return LorentzVectorCyl(pt,eta,phi,mass)
 end
 
@@ -73,6 +76,12 @@ function fast_mass(v1::LorentzVectorCyl, v2::LorentzVectorCyl)
         - tpt12*cos(phi1-phi2), zero(pt1)))
 end
 
+"Rapidity"
+function rapidity(lv::LorentzVectorCyl)
+    num = sqrt(lv.mass^2 + lv.pt^2 * cosh(lv.eta)^2) + lv.pt * sinh(lv.eta)
+    den = sqrt(lv.mass^2 + lv.pt^2)
+    return log(num/den)
+end
 
 # https://root.cern.ch/doc/v606/GenVector_2VectorUtil_8h_source.html#l00061
 @inline function deltaphi(v1::LorentzVectorCyl, v2::LorentzVectorCyl)
@@ -88,6 +97,14 @@ end
 @inline function deltar2(v1::LorentzVectorCyl, v2::LorentzVectorCyl)
     dphi = deltaphi(v1,v2)
     deta = deltaeta(v1,v2)
-    return fma(dphi, dphi, deta^2)
+    return muladd(dphi, dphi, deta^2)
 end
 deltar(v1::LorentzVectorCyl, v2::LorentzVectorCyl) = sqrt(deltar2(v1, v2))
+
+const ΔR = deltar
+
+function fromPtEtaPhiE(pt, eta, phi, E) 
+    m2 = E^2 - pt^2 - (sinh(eta) * pt)^2
+    m = sign(m2) * sqrt(abs(m2)) 
+    return LorentzVectorCyl(pt, eta, phi, m) 
+end

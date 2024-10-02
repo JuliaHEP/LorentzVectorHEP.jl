@@ -1,0 +1,12 @@
+# This file is machine-generated - editing it directly is not advised
+
+julia_version = "1.10.5"
+manifest_format = "2.0"
+project_hash = "df334091abd3d9d7460a1632df59b17e4c33e438"
+
+[[deps.LorentzVectorBase]]
+git-tree-sha1 = "ce539f32e3559c01d539d33742f627145a4c8e00"
+repo-rev = "add_PtEtaPhiM_coord"
+repo-url = "https://github.com/JuliaHEP/LorentzVectorBase.jl"
+uuid = "592a752d-6533-4762-a71b-738712ea30ec"
+version = "0.0.1-DEV"

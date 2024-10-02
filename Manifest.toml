@@ -5,8 +5,8 @@ manifest_format = "2.0"
 project_hash = "df334091abd3d9d7460a1632df59b17e4c33e438"
 
 [[deps.LorentzVectorBase]]
-git-tree-sha1 = "ce539f32e3559c01d539d33742f627145a4c8e00"
-repo-rev = "add_PtEtaPhiM_coord"
+git-tree-sha1 = "34dcfdf310afda74f6399520c3c575fd5d677d8f"
+repo-rev = "main"
 repo-url = "https://github.com/JuliaHEP/LorentzVectorBase.jl"
 uuid = "592a752d-6533-4762-a71b-738712ea30ec"
 version = "0.0.1-DEV"

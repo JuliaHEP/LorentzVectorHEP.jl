@@ -4,11 +4,10 @@ authors = ["Jerry Ling <proton@jling.dev> and contributors"]
 version = "0.1.6"
 
 [deps]
-LorentzVectors = "3f54b04b-17fc-5cd4-9758-90c048d965e3"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [compat]
 julia = "^1.6"
-LorentzVectors = "^0.4"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

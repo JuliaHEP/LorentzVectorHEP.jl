@@ -3,8 +3,6 @@ uuid = "f612022c-142a-473f-8cfd-a09cf3793c6c"
 authors = ["Jerry Ling <proton@jling.dev> and contributors"]
 version = "0.1.6"
 
-[deps]
-Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [compat]
 julia = "^1.6"

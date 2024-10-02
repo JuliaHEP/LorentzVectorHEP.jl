@@ -1,6 +1,6 @@
 module LorentzVectorHEP
 
-import Base: +, -, *, /, ==, isapprox, ≈, zero, convert
+import Base: +, -, *, /, ==, isapprox, ≈
 
 export LorentzVectorCyl, LorentzVector
 

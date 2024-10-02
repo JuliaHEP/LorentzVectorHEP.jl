@@ -4,8 +4,7 @@ authors = ["Jerry Ling <proton@jling.dev> and contributors"]
 version = "0.1.6"
 
 [deps]
-LorentzVectorsBase = "592a752d-6533-4762-a71b-738712ea30ec"
-LorentzVectors = "3f54b04b-17fc-5cd4-9758-90c048d965e3"
+LorentzVectorBase = "592a752d-6533-4762-a71b-738712ea30ec"
 
 [compat]
 LorentzVectorBase = "^0.1"

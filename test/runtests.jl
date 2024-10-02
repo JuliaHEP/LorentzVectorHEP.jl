@@ -19,7 +19,7 @@ using Test
     v1 = LorentzVectorCyl(43.71242f0, 1.4733887f0, 1.6855469f0, 0.10571289f0)
     v2 = LorentzVectorCyl(36.994347f0, 0.38684082f0, -1.3935547f0, 0.10571289f0)
     @test (v1+v2).mass == 92.55651f0
-    @test fast_mass(v1,v2) == 92.55651f0
+    @test fast_mass(v1,v2) ≈ 92.55651f0
     @test isapprox(deltar(v1,v2), 3.265188f0, atol=1e-6)
     @test isapprox(deltaphi(v1,v2), -3.0791016f0, atol=1e-6)
 
@@ -39,6 +39,24 @@ using Test
     @test eta(vcart2) ≈ -0.04276400891568771 atol=1e-9
     @test phi(vcart2) ≈ -0.9884433806509134 atol=1e-9
     @test LorentzVectorHEP.phi02pi(vcart2) ≈ 5.294741926528673 atol=1e-9
+
+    @test vcart1 + vcart2 ≈ LorentzVector(vcart1.t + vcart2.t, vcart1.x + vcart2.x, vcart1.y + vcart2.y, vcart1.z + vcart2.z)
+    @test vcart1 + vcart2 == vcart2 + vcart1
+    @test -vcart1 == LorentzVector(-(vcart1.t), -(vcart1.x), -(vcart1.y), -(vcart1.z))
+    @test vcart1 - vcart2 ≈ LorentzVector(vcart1.t - vcart2.t, vcart1.x - vcart2.x, vcart1.y - vcart2.y, vcart1.z - vcart2.z)
+    @test vcart1 - vcart2 == -(vcart2 - vcart1)
+    
+    c = rand()
+    @test c*vcart1 ≈ LorentzVector(c*vcart1.t, c*vcart1.x, c*vcart1.y, c*vcart1.z)
+    @test -c*vcart1 ≈ LorentzVector(-c*vcart1.t, -c*vcart1.x, -c*vcart1.y, -c*vcart1.z)
+    @test vcart1*c == c*vcart1
+
+    if c == 0
+        c += 0.1
+    end
+
+    @test vcart1 / c ≈ vcart1 * (1/c)
+    
 
     @test deltaeta(vcart1, vcart2) ≈ 0.08825941862546584 atol=1e-9
     @test deltaphi(vcart1, vcart2) ≈ 3.0317366429628736 atol=1e-9

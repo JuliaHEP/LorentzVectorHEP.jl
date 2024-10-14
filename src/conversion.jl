@@ -5,12 +5,12 @@
 
 
 # conversion
-function LorentzVector{CS}(v::LorentzVector) where {CS<:Union{LorentzVectorBase.XYZT,LorentzVectorBase.PxPyPzE}}
+function LorentzVector{CS}(lv::LorentzVector) where {CS<:Union{LorentzVectorBase.XYZT,LorentzVectorBase.PxPyPzE}}
     return LorentzVector(
-        LorentzVectorBase.x(lv), 
-        LorentzVectorBase.y(lv), 
-        LorentzVectorBase.z(lv),
-        LorentzVectorBase.t(lv), 
+        LorentzVectorBase.px(lv), 
+        LorentzVectorBase.py(lv), 
+        LorentzVectorBase.pz(lv),
+        LorentzVectorBase.pt(lv), 
     )
 end
 

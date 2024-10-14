@@ -20,13 +20,14 @@ function Base.isapprox(
     atol::Real=0, 
     rtol::Real=atol>0 ? 0 : sqrt(eps())
 ) where {CS<:LorentzVectorBase.AbstractCoordinateSystem}
-    isapprox(lv1.data,lv2.data;atol,rtol)
+    all(isapprox.(lv1.data,lv2.data;atol,rtol))
 end
 
 
 # phi is in [0,2pi) by definition in LorentzVectorBase
 function phi02pi(lv::LorentzVector)
-    return phi(lv)
+    return mod2pi(LorentzVectorBase.phi(lv))
+    #return phi(lv) < 0.0 ? phi(lv) + 2π : phi(lv)
 end
 
 function phi_mpi_pi(x)
@@ -42,10 +43,10 @@ end
 
 deltaeta(lv1, lv2) = eta(lv1) - eta(lv2)
 
-deltaphi(lv1, lv2) = phi_mpi_pi(phi(lv1) - phi(lv2))
+deltaphi(lv1, lv2) = phi_mpi_pi(LorentzVectorBase.phi(lv1) - LorentzVectorBase.phi(lv2))
 
 function deltar(lv1, lv2)
-    deta = eta(lv1) - eta(lv2)
+    deta = LorentzVectorBase.eta(lv1) - LorentzVectorBase.eta(lv2)
     dphi = deltaphi(lv1, lv2)
     return sqrt(fma(deta, deta, dphi * dphi))
 end

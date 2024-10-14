@@ -7,6 +7,8 @@ export px,py,pz,energy,pt,eta,phi,mass,rapidity
 
 export deltaphi, deltar, deltaeta
 
+export fast_mass
+
 #export ΔR, Δϕ, Δη
 export fromPtEtaPhiE
 

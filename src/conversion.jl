@@ -10,7 +10,7 @@ function LorentzVector{CS}(lv::LorentzVector) where {CS<:Union{LorentzVectorBase
         LorentzVectorBase.px(lv), 
         LorentzVectorBase.py(lv), 
         LorentzVectorBase.pz(lv),
-        LorentzVectorBase.pt(lv), 
+        LorentzVectorBase.E(lv), 
     )
 end
 

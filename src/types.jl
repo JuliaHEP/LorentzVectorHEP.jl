@@ -25,6 +25,8 @@ LorentzVector(c1,c2,c3,c0) = LorentzVector(LorentzVectorBase.XYZT(),c1,c2,c3,c0)
 
 Base.broadcastable(lv::LorentzVector) = Ref(lv)
 
+Base.zero(::Type{LV}) where {LV<:LorentzVector} = LV(0,0,0,0)
+
 # all supported coordinate system types
 const SUPPORTED_COORDINATE_SYSTEMS = InteractiveUtils.subtypes(LorentzVectorBase.AbstractCoordinateSystem)
 

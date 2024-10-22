@@ -2,39 +2,7 @@ using LorentzVectorBase
 using LorentzVectorHEP
 using Test
 
-old_LorentzVector(t,x,y,z) = LorentzVector(x,y,z,t) 
-
-function Base.getproperty(lv::LorentzVector,sym::Symbol)
-    if sym == :x
-        return LorentzVectorBase.px(lv)
-    end
-    if sym == :y
-        return LorentzVectorBase.py(lv)
-    end
-    if sym == :z
-        return LorentzVectorBase.pz(lv)
-    end
-    if sym == :t
-        return LorentzVectorBase.E(lv)
-    end
-
-    if sym == :phi
-        return LorentzVectorBase.phi(lv)
-    end
-
-    if sym == :pt
-        return LorentzVectorBase.pt(lv)
-    end
-
-    if sym == :eta
-        return LorentzVectorBase.eta(lv)
-    end
-    if sym == :mass
-        return LorentzVectorBase.mass(lv)
-    end
-
-    return getfield(lv,sym)
-end
+include("patch_test.jl")
 
 @testset "calculations" begin
     v1 = LorentzVectorCyl(1761.65,-2.30322,-2.5127,0.105652)
@@ -136,7 +104,7 @@ end
 end
 
 @testset "fromPtEtaPhiE" begin
-    v1 = old_LorentzVectorCyl(1761.65,-2.30322,-2.5127,0.105652) 
+    v1 = LorentzVectorCyl(1761.65,-2.30322,-2.5127,0.105652) 
     v2 = fromPtEtaPhiE(v1.pt, v1.eta, v1.phi, LorentzVectorBase.energy(v1))
     @test v1.mass ≈ v2.mass atol=1e-6
  end

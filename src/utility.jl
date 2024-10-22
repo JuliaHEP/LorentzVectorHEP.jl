@@ -26,8 +26,8 @@ end
 
 # phi is in [0,2pi) by definition in LorentzVectorBase
 function phi02pi(lv::LorentzVector)
-    return mod2pi(LorentzVectorBase.phi(lv))
-    #return phi(lv) < 0.0 ? phi(lv) + 2π : phi(lv)
+#    return mod2pi(LorentzVectorBase.phi(lv))
+    return phi(lv) < 0.0 ? phi(lv) + 2π : phi(lv)
 end
 
 function phi_mpi_pi(x)
@@ -49,6 +49,13 @@ function deltar(lv1, lv2)
     deta = LorentzVectorBase.eta(lv1) - LorentzVectorBase.eta(lv2)
     dphi = deltaphi(lv1, lv2)
     return sqrt(fma(deta, deta, dphi * dphi))
+end
+
+# https://root.cern.ch/doc/v606/GenVector_2VectorUtil_8h_source.html#l00061
+@inline function deltaphi(v1::LorentzVectorCyl, v2::LorentzVectorCyl)
+    dphi = v2.phi - v1.phi
+    dphi = dphi - 2*pi*(dphi > pi) + 2*pi*(dphi <= -pi)
+    return dphi
 end
 
 function fast_mass(v1::LorentzVectorCyl, v2::LorentzVectorCyl)

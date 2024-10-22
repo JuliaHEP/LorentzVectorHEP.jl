@@ -1,3 +1,4 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+LorentzVectorBase = "592a752d-6533-4762-a71b-738712ea30ec"
 LorentzVectorHEP = "f612022c-142a-473f-8cfd-a09cf3793c6c"

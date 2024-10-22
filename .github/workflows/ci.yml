@@ -51,7 +51,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: julia-actions/cache@v2
       - name: Add LorentzVectorBase
-        run: julia --project=@. add_LorentzVectorBase.jl
+        run: julia --project=docs/ add_LorentzVectorBase.jl
       - uses: julia-actions/julia-buildpkg@latest
       - uses: julia-actions/julia-docdeploy@latest
         env:

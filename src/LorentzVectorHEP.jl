@@ -1,6 +1,8 @@
 module LorentzVectorHEP
 
 import Base: +, -, *, /, ==, isapprox, ≈
+using LorentzVectorBase
+import LorentzVectorBase: px, py, pz, energy, pt, rapidity, eta, phi, mt, mt2, pt, pt2, mass, mass2, azimuthal_angle
 
 export LorentzVectorCyl, LorentzVector
 
@@ -83,7 +85,13 @@ function isapprox(u::LorentzVector, v::LorentzVector;
 end
 
 include("cartesian.jl")
+
 include("cylindrical.jl")
+LorentzVectorBase.coordinate_system(::LorentzVectorCyl) = LorentzVectorBase.PtEtaPhiM()
+LorentzVectorBase.pt(mom::LorentzVectorCyl) = mom.pt
+LorentzVectorBase.eta(mom::LorentzVectorCyl) = mom.eta
+LorentzVectorBase.phi(mom::LorentzVectorCyl) = mom.phi
+LorentzVectorBase.mass(mom::LorentzVectorCyl) = mom.mass
 
 # conversion
 function LorentzVector(v::LorentzVectorCyl)

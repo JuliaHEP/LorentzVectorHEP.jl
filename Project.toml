@@ -3,6 +3,8 @@ uuid = "f612022c-142a-473f-8cfd-a09cf3793c6c"
 authors = ["Jerry Ling <proton@jling.dev> and contributors"]
 version = "0.1.6"
 
+[deps]
+LorentzVectorBase = "592a752d-6533-4762-a71b-738712ea30ec"
 
 [compat]
 julia = "^1.6"

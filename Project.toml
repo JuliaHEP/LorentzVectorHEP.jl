@@ -1,14 +1,20 @@
 name = "LorentzVectorHEP"
 uuid = "f612022c-142a-473f-8cfd-a09cf3793c6c"
 authors = ["Jerry Ling <proton@jling.dev> and contributors"]
-version = "0.1.6"
+version = "0.1.7"
 
+[weakdeps]
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+
+[extensions]
+LorentzVectorHEPStaticArraysExt = "StaticArrays"
 
 [compat]
 julia = "^1.6"
 
 [extras]
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["Test", "StaticArrays"]

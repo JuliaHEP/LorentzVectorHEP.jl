@@ -105,3 +105,5 @@ end
     v2 = fromPtEtaPhiE(v1.pt, v1.eta, v1.phi, energy(v1))
     @test v1.mass ≈ v2.mass atol=1e-6
  end
+
+ include("staticarrays.jl")

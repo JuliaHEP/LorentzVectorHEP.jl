@@ -1,7 +1,10 @@
 name = "LorentzVectorHEP"
 uuid = "f612022c-142a-473f-8cfd-a09cf3793c6c"
 authors = ["Jerry Ling <proton@jling.dev> and contributors"]
-version = "0.1.7"
+version = "0.1.8"
+
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [weakdeps]
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
@@ -10,8 +13,9 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 LorentzVectorHEPStaticArraysExt = "StaticArrays"
 
 [compat]
-julia = "^1.6"
+LinearAlgebra = "1.11.0"
 StaticArrays = "1"
+julia = "^1.6"
 
 [extras]
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"

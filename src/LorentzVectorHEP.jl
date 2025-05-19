@@ -1,6 +1,6 @@
 module LorentzVectorHEP
 
-import Base: +, -, *, /, ==, isapprox, ≈
+using LinearAlgebra
 
 export LorentzVectorCyl, LorentzVector
 
@@ -40,40 +40,40 @@ LorentzVector(t::T, x::T, y::T, z::T) where {T <: Union{Integer, Rational, Irrat
 
 Inner product of 4-vectors, in the Minkowsky metric (+,-,-,-).
 """
-function dot(u::LorentzVector, v::LorentzVector)
+function LinearAlgebra.dot(u::LorentzVector, v::LorentzVector)
     @fastmath u.t*v.t - u.x*v.x - u.y*v.y - u.z*v.z
 end
 
 
-function +(u::LorentzVector, v::LorentzVector)
+function Base.:(+)(u::LorentzVector, v::LorentzVector)
     @fastmath LorentzVector(u.t + v.t, u.x + v.x, u.y + v.y, u.z + v.z)
 end
 
-function -(u::LorentzVector)
+function Base.:(-)(u::LorentzVector)
     @fastmath LorentzVector(-u.t, -u.x, -u.y, -u.z)
 end
 
-function -(u::LorentzVector, v::LorentzVector)
+function Base.:(-)(u::LorentzVector, v::LorentzVector)
     @fastmath u + (-v)
 end
 
-function *(λ::Number, u::LorentzVector)
+function Base.:(*)(λ::Number, u::LorentzVector)
     @fastmath LorentzVector(λ*u.t, λ*u.x, λ*u.y, λ*u.z)
 end
 
-function *(u::LorentzVector, λ::Number)
+function Base.:(*)(u::LorentzVector, λ::Number)
     @fastmath λ * u
 end
 
-function /(u::LorentzVector, λ::Number)
+function Base.:(/)(u::LorentzVector, λ::Number)
     @fastmath u * (one(λ) / λ)
 end
 
-function ==(u::LorentzVector, v::LorentzVector)
+function Base.:(==)(u::LorentzVector, v::LorentzVector)
     u.t == v.t && u.x == v.x && u.y == v.y && u.z == v.z
 end
 
-function isapprox(u::LorentzVector, v::LorentzVector;
+function Base.isapprox(u::LorentzVector, v::LorentzVector;
                   atol::Real=0,
                   rtol::Real=atol>0 ? 0 : √min(eps(typeof(u.x)), eps(typeof(v.x))))
 

@@ -4,8 +4,9 @@ using LinearAlgebra
 
 export LorentzVectorCyl, LorentzVector
 
-export px, py, pz, energy, fast_mass, pt, rapidity, eta, phi, mass
-export deltaphi, deltar, deltaeta
+
+export px, py, pz, energy, fast_mass, pt, rapidity, eta, phi, theta, mass
+export deltaphi, deltar, deltaeta, deltatheta
 export ΔR, Δϕ, Δη
 export fromPtEtaPhiE
 
@@ -83,6 +84,13 @@ end
 
 include("cartesian.jl")
 include("cylindrical.jl")
+
+const Δϕ = deltaphi
+const Δη = deltaeta
+const ΔR = deltar
+const Δθ = deltatheta
+
+export ΔR, Δϕ, Δη, Δθ
 
 # conversion
 function LorentzVector(v::LorentzVectorCyl)

@@ -52,6 +52,14 @@ function phi02pi(lv::LorentzVector)
     return phi(lv) < 0.0 ? phi(lv) + 2π : phi(lv)
 end
 
+function theta(lv::LorentzVector)
+    return lv.x == 0.0 && lv.y == 0.0 && lv.z == 0.0 ? 0.0 : atan2(pt(lv), lv.z)
+end
+
+function deltatheta(lv1::LorentzVector, lv2::LorentzVector)
+    return phi_mpi_pi(theta(lv1) - theta(lv2))
+end
+
 function phi_mpi_pi(x)
     twopi = 2pi
     while (x >= pi)

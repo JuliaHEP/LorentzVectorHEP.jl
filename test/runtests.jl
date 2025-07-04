@@ -12,6 +12,8 @@ using Test
 
     @test LorentzVectorHEP.pt2(v1) ≈ 3.1034107225e6 atol=1e-6
     @test LorentzVectorHEP.mass2(v1) ≈ 0.011162345103999998 atol=1e-6
+    @test LorentzVectorHEP.mt2(v1) ≈ 3.103410733662337e6 atol=1e-6
+    @test LorentzVectorHEP.mt(v1) ≈ 1761.650003 atol=1e-6
 
     @test isapprox((v1+v2).mass, 8.25741602000877, atol=1e-6)
     @test isapprox(fast_mass(v1,v2), 8.25741602000877, atol=1e-6)

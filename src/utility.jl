@@ -9,7 +9,7 @@ Base.zero(lv::LorentzVector{CS,T}) where {CS,T} = LorentzVector{CS}(ntuple(i->ze
 Base.:(==)(lv1::LorentzVector, lv2::LorentzVector) = false
 
 function Base.:(==)(lv1::LorentzVector{CS}, lv2::LorentzVector{CS}) where {CS<:LorentzVectorBase.AbstractCoordinateSystem}
-    return lv1.data==lv2.data
+    return lv1.comp1 ==lv2.comp1 && lv1.comp2 ==lv2.comp2 && lv1.comp3 ==lv2.comp3 && lv1.comp0 ==lv2.comp0
 end
 
 Base.isapprox(lv1::LorentzVector,lv2::LorentzVector; args...) = false
@@ -20,7 +20,7 @@ function Base.isapprox(
     atol::Real=0, 
     rtol::Real=atol>0 ? 0 : sqrt(eps())
 ) where {CS<:LorentzVectorBase.AbstractCoordinateSystem}
-    all(isapprox.(lv1.data,lv2.data;atol,rtol))
+    return isapprox(lv1.comp1,lv2.comp1;atol,rtol) && isapprox(lv1.comp2,lv2.comp2;atol,rtol) && isapprox(lv1.comp3,lv2.comp3;atol,rtol) && isapprox(lv1.comp0,lv2.comp0;atol,rtol) 
 end
 
 

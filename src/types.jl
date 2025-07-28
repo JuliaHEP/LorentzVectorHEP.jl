@@ -5,14 +5,16 @@
 abstract type AbstractLorentzVector end
 
 struct LorentzVector{CS<:LorentzVectorBase.AbstractCoordinateSystem,T} <:AbstractLorentzVector
-    coord_sys::CS
-    data::NTuple{4,T}
+    comp1::T
+    comp2::T
+    comp3::T
+    comp0::T
 
-    LorentzVector{CS}(comp1::T,comp2::T,comp3::T,comp0::T) where {CS,T} = new{CS,T}(CS(),(comp1,comp2,comp3,comp0))
+    LorentzVector{CS}(comp1::T,comp2::T,comp3::T,comp0::T) where {CS,T} = new{CS,T}(comp1,comp2,comp3,comp0)
 
     function LorentzVector(cs::CS,comp1::T,comp2::T,comp3::T,comp0::T) where {CS<:LorentzVectorBase.AbstractCoordinateSystem,T}
 
-        new{CS,T}(cs,(comp1,comp2,comp3,comp0))
+        new{CS,T}(comp1,comp2,comp3,comp0)
     end
 end
 
@@ -31,7 +33,7 @@ Base.zero(::Type{LV}) where {LV<:LorentzVector} = LV(0,0,0,0)
 const SUPPORTED_COORDINATE_SYSTEMS = InteractiveUtils.subtypes(LorentzVectorBase.AbstractCoordinateSystem)
 
 # implementation of the kinematic interface
-LorentzVectorBase.coordinate_system(lv::LorentzVector{CS}) where {CS<:LorentzVectorBase.AbstractCoordinateSystem}= lv.coord_sys
+LorentzVectorBase.coordinate_system(lv::LorentzVector{CS}) where {CS<:LorentzVectorBase.AbstractCoordinateSystem}= CS()
 
 # For each possible coordiante system, this implements the respective getter functions.
 # The order of the components is given by coordinate_names(cs) for every coodinate system
@@ -40,7 +42,7 @@ for cs in SUPPORTED_COORDINATE_SYSTEMS
     for (i,func) in enumerate(coordinate_names(cs()))
         eval(
             quote
-                (LorentzVectorBase.$func)(lv::LorentzVector{$cs}) = lv.data[$i]
+                (LorentzVectorBase.$func)(lv::LorentzVector{$cs}) = getfield(lv,$i)
             end,
         )
     end

@@ -24,9 +24,8 @@ function Base.isapprox(
 end
 
 
-# phi is in [0,2pi) by definition in LorentzVectorBase
+# phi is in [-pi,pi) by definition in LorentzVectorBase
 function phi02pi(lv::LorentzVector)
-#    return mod2pi(LorentzVectorBase.phi(lv))
     return phi(lv) < 0.0 ? phi(lv) + 2π : phi(lv)
 end
 

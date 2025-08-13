@@ -15,7 +15,7 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 LorentzVectorHEPStaticArraysExt = "StaticArrays"
 
 [compat]
-InteractiveUtils = "1.11.0"
+InteractiveUtils = "1.10"
 LinearAlgebra = "1"
 LorentzVectorBase = "0.0.1"
 StaticArrays = "1"
